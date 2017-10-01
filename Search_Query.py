@@ -7,8 +7,6 @@ import re, collections
 import webbrowser
 import Tkinter as tk
 from Tkinter import *
-import Tkinter as tki
-from ScrolledText import ScrolledText
 
 
 lengths = {}
@@ -130,8 +128,8 @@ entry.focus()
 
 Text_Area = Text(root, wrap='word')
 Text_Area.pack(expand='yes', fill='both')
-Text_Area['yscrollcommand']=scroll_bar.set
 scroll_bar = Scrollbar(Text_Area)
+Text_Area['yscrollcommand']=scroll_bar.set
 scroll_bar.pack(side=RIGHT, fill=Y)
 scroll_bar['command']=Text_Area.yview
 
