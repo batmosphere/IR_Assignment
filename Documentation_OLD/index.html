@@ -1,0 +1,328 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="description" content="">
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Documentation for Informaton Retrieval Assignment 1</title>
+<link rel="alternate" type="application/rss+xml" title="frittt.com" href="feed/index.html">
+<link href="http://fonts.googleapis.com/css?family=Raleway:700,300" rel="stylesheet"
+        type="text/css">
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/prettify.css">
+</head>
+<body>
+<div class="wrapper">
+<nav>
+ 
+  	<div class="pull-left">
+    	<h1><a href="javascript:"><img src="img/Capture1.png" alt="Free Documentation Template Icon" /> <span><strong>Assignment 1</span></a></h1>
+    </div>
+
+</nav>
+<header>
+  <div class="container">
+    <h2 class="lone-header" style="margin-left:250px"> CS F369 Informaton Retrieval Assignment 1 Documentation</h2>
+  </div>
+</header>
+<section>
+  <div class="container">
+    <ul class="docs-nav">
+      <li><strong>General Information</strong></li>
+      <li><a href="#about" class="cc-active">About</a></li>
+      <li><a href="#authors" class="cc-active">Authors</a></li>
+	  <li><a href="#features" class="cc-active">Features</a></li>
+      <li><a href="#results" class="cc-active">Results</a></li>
+      <li><a href="#notes" class="cc-active">Notes</a></li>
+      <li class="separator"></li>
+      <li><strong>Screenshots & Code snippets</strong></li>
+      <li><a href="#tokenizer" class="cc-active">Tokenizer</a></li>
+      <li><a href="#autosuggest" class="cc-active">Autosuggestions</a></li>
+      <li><a href="#speaknow" class="cc-active">Search based on Speak Recognition</a></li>
+      <li><a href="#hyper" class="cc-active">HyperLinked Results</a></li>
+      
+    </ul>
+    <div class="docs-content">
+      <h2>General Information</h2>
+      <h3 id="about"> About</h3>
+      <p>The documentation is submitted to fullfill the need of first Assignment of Information Retrieval. </p>
+      
+      <p> We have generated a Search Engine <strong>DASH</strong> using Python as programming language and its libraries as accessories .</p>
+
+      <ul>
+        <li>Python's NLTK</li>
+        <li>Python's Tkinter GUI library</li>
+        <li>Google's Speech Recognition API</li>
+        <li>NLTK's Porter Stemmer Module</li>
+        <li>Python's Pickle Library</li>
+        <li>Brown Corpus</li>
+        
+      </ul>
+      <h3 id="authors"> Authors</h3>
+      <ul>
+        <li>Sourav Kumar Mohanty (2013A7PS149H)</li>
+        <li>Ashish Pratap Singh (2013A7PS161H)</li>
+        <li>Devendra Singh Shekhawat (2013A7PS204H)</li>
+		<li>Harsh Garg (2013A7PS073H)</li>
+      </ul>
+	  
+	  <h3 id="features">Features </h3>
+      <ul>
+        <li>Case-insensitive Search Results</li>
+        <li>Normalisation of query and corpus texts</li>
+		<li>Ranking of Search Results</li>
+        <li>Autosuggestions</li>
+		<li>Spelling Corrections</li>
+		<li>User interface for Search Engine</li>
+		<li>Search based on Audio ( like Google's Speak Now )</li>
+		<li>Browsing individual Search Results through clickable links</li>
+      </ul>
+	  
+      <h3 id="results"> Results</h3>
+      <p> We were able to retrieve and rank the documents based on <strong>Vector Space Model</strong> and <strong>Ranked Retrieval</strong>. Besides, Auto-suggestions are also provided in the form of Drop-down list to help the user in his query search. Speech Recognition is also incorporated that performs a search based on audio input.
+		At the end , the relevant documents are displayed on the basis of their rank with respect to resemblance to the searched query in the form of redirective links, which will get directed to the corresponding document in the default web browser.</p>
+	  
+	          
+      <h3 id="notes"> Notes</h3>	  
+	  
+      <ul>
+	<li>For Speech Recognition , the system's microphone should be enabled.</li>
+	<li>Top 20 results are displayed based on their rank of resemblance with the searched query.</li>
+		
+      </ul>
+
+      <hr>
+      <h2>Screenshots & Code snippets</h2>
+
+      <p>DashBoard showing Search Results based on query <strong>'sound'</strong></p>
+      <img src="img/searchOptions.JPG">
+
+
+     
+
+      <h3 id="tokenizer">Tokenizer</h3>
+      <pre class="prettyprint">
+	
+stemmer = PorterStemmer()
+
+dict = {}
+d = set()
+d1 = set()
+
+for files in fileNames:
+    fileName = 'brown/'+files
+    #print files
+    dict[str(files)]={}
+    with open(fileName) as f:
+        content = f.read()
+        for word in content.split():
+            ind = word.find('/')
+            if word.find(',')==-1 and word.find("'")==-1 and word.find('(')==-1:
+                word = word[:ind]
+                word=word.lower()
+                d1.add(str(word))
+                word = stemmer.stem(word)
+                d.add(str(word))
+                #print word
+                if dict[files].has_key(word):
+                    k=dict[files][word]
+                    dict[files][word]=k+1
+                else:
+                    dict[files][word]=1    
+
+print list(d1)[:200]
+
+print len(d1)
+
+invertedIndex = {}
+
+for term in d:
+    invertedIndex[term] = []
+    for file in fileNames:
+        if dict[file].has_key(term):
+            invertedIndex[term].append(file)
+           
+
+n = len(fileNames)
+
+tf_idf = {}
+
+for files in fileNames:
+    fileName = 'brown/'+files
+    #print files
+    tf_idf[str(files)]={}
+    for key in dict[str(files)]:
+        tf_idf[files][key] = (1 + math.log(dict[files][key],10.0) ) * (math.log(n/(1.0 * len(invertedIndex[key]) ), 10.0))
+
+      </pre>
+	
+	
+
+
+      <h3 id="autosuggest">Autosuggestions</h3>
+      <pre class="prettyprint">
+	
+class AutocompleteEntry(Entry):
+    def __init__(self,*args, **kwargs):
+        Entry.__init__(self, *args, **kwargs)
+        self.var = self["textvariable"]
+        if self.var == '':
+            self.var = self["textvariable"] = StringVar()
+
+        self.var.trace('w', self.changed)
+        self.bind("<Right>", self.selection)
+        self.bind("<Up>", self.up)
+        self.bind("<Down>", self.down)
+
+        self.lb_up = False
+
+    def changed(self, name, index, mode):
+        if self.var.get() == '':
+            self.lb.destroy()
+            self.lb_up = False
+        else:
+            words = self.comparison()
+            if words:
+                if not self.lb_up:
+                    self.lb = Listbox()
+                    self.lb.bind("<Double-Button-1>", self.selection)
+                    self.lb.bind("<Right>", self.selection)
+                    self.lb.place(x=self.winfo_x()+self.winfo_width()-40, y=self.winfo_y()+self.winfo_height())
+                    self.lb_up = True
+
+                self.lb.delete(0, END)
+                for w in words:
+                    self.lb.insert(END,w)
+            else:
+                if self.lb_up:
+                    self.lb.destroy()
+                    self.lb_up = False
+        
+    def selection(self, event):
+        if self.lb_up:
+            self.var.set(self.lb.get(ACTIVE))
+            self.lb.destroy()
+            self.lb_up = False
+            self.icursor(END)
+
+    def up(self, event):
+        if self.lb_up:
+            if self.lb.curselection() == ():
+                index = '0'
+            else:
+                index = self.lb.curselection()[0]
+            if index != '0':
+                self.lb.selection_clear(first=index)
+                index = str(int(index)-1)
+                self.lb.selection_set(first=index)
+                self.lb.activate(index)
+
+    def down(self, event):
+        if self.lb_up:
+            if self.lb.curselection() == ():
+                index = '0'
+            else:
+                index = self.lb.curselection()[0]
+            if index != END:
+                self.lb.selection_clear(first=index)
+                index = str(int(index)+1)
+                self.lb.selection_set(first=index)
+                self.lb.activate(index)
+
+    def comparison(self):
+        word=self.var.get()
+        word=word.lower()
+        ed=EditDist()
+        sugg=[]
+        trie.didUMean(word,sugg)
+        if len(sugg)!=0:
+            sugg.sort(key = lambda s: len(s))
+        else:
+            sugg=ed.correct(word)
+            
+        if trie.search(word):
+            sugg.insert(0,word)
+        
+        res=[chunk for chunk in sugg[:min(len(sugg),10)]]
+
+        return res
+
+      </pre>
+	
+	
+
+
+      <h3 id="speaknow">Search based on Speak Recognition</h3>
+      <pre class="prettyprint">
+def speakNow():
+    r = sr.Recognizer()
+    
+    with sr.Microphone() as source:
+        print("Say something!")
+        audio = r.listen(source)
+
+      
+    try:
+        print("Google thinks you said " + r.recognize_google(audio))
+        key = r.recognize_google(audio)
+        entry.delete(0, END)
+        entry.insert(0,key)
+        word=key
+        text=pageRank(key)
+        content_text.delete('1.0', END)
+        content_text.insert('0.0',text)
+        
+    except sr.UnknownValueError:
+        print("Google could not understand audio")
+    except sr.RequestError as e:
+        print("Could not request results from Google service; {0}".format(e))
+
+
+      </pre>
+	  
+	  
+	
+
+
+      <h3 id="hyper">HyperLinked Search Results</h3>
+      <pre class="prettyprint">
+def callback(event):
+    s = event.widget.cget("text")
+    webbrowser.get("C:/Program Files (x86)/Google/Chrome/Application/chrome.exe %s").open(s)
+    
+
+def showSearchResults():
+    key=entry.get()
+    word=key
+    text=pageRank(key)
+    for words in text.split('\n'):
+        lbl = tk.Label(root, text=r"brown/"+words, fg="blue", cursor="hand2")
+        lbl.pack(side=LEFT)
+        lbl.bind("<Button-1>", callback)
+      </pre>
+
+<p>The corresponding Document is directed to on clicking the hyperlink displayed in search results.</p> 
+	<img src="img/browseDoc.JPG">
+
+    </div>
+  </div>
+</section>
+<section class="vibrant centered">
+  <div class="">
+    <h4> This documentation template is provided by <a href="http://www.frittt.com" target="_blank">Frittt Templates</a>.</h4>
+  </div>
+</section>
+<footer>
+  <div class="">
+    <p> &copy; Copyright Frittt Templates. All Rights Reserved.</p>
+  </div>
+</footer>
+</div>
+<script src="js/jquery.min.js"></script> 
+<script type="text/javascript" src="js/prettify/prettify.js"></script> 
+<script src="js/prettify/run_prettify.js?lang=css&skin=sunburst"></script>
+<script src="js/layout.js"></script>
+</body>
+</html>

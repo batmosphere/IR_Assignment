@@ -92,7 +92,7 @@ class completeEntry(Entry):
 
 def GotoData(event):    #function which gets called when a doc link is clicked
     s = event.widget.cget("text")
-    webbrowser.get("C:/Program Files (x86)/Google/Chrome/Application/chrome.exe %s").open(s)
+    webbrowser.get("firefox").open(s)
     
 
 def Show_Results():    #function to show all the relevant documents inside the GUI
