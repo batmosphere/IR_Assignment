@@ -1,0 +1,4 @@
+speechRecognition
+nltk
+pyttsx3
+pyaudio
