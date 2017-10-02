@@ -101,7 +101,7 @@ def Show_Results():    #function to show all the relevant documents inside the G
     text=Page_Ranking_Algo(key)
     print text.split()
     
-    engine = pyttsx.init()
+    engine = pyttsx.init()		#Text to Speech Engine using pyttsx library
     rate = engine.getProperty('rate')
     engine.setProperty('rate', rate-40)
     engine.setProperty('voice', 'english+f3')
@@ -118,7 +118,7 @@ def Show_Results():    #function to show all the relevant documents inside the G
     
 
 def SpeechToText():     #function to implement speach to text conversion
-   # obtain audio from the microphone
+  												 # obtain audio from the microphone
 	r = sr.Recognizer()
 	with sr.Microphone() as source:
 	    print("Say something!")
@@ -127,7 +127,7 @@ def SpeechToText():     #function to implement speach to text conversion
 	# recognize speech using Sphinx
 	try:
  	  	print("Sphinx thinks you said " + r.recognize_sphinx(audio))
-	    	key = r.recognize_sphinx(audio)
+	    	key = r.recognize_sphinx(audio)		#pyaudio library required 
 	        #entry = StringVar()
 	        #entry.set(str1)
         	#showSearchResults()
@@ -143,7 +143,7 @@ def SpeechToText():     #function to implement speach to text conversion
 		print("Sphinx error; {0}".format(e))
 
     
-Name="Search Engine"
+Name="Search Engine IR Assignment 1"
 
 #GUI Window creation
 
