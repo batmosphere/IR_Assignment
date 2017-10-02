@@ -7,6 +7,7 @@ import re, collections
 import webbrowser
 import Tkinter as tk
 from Tkinter import *
+import speech_recognition as sr
 
 
 lengths = {}
@@ -108,6 +109,33 @@ def Show_Results():    #function to show all the relevant documents inside the G
     label2 = tk.Label(Text_Area, text=r"*************End Of results**************", fg="black", bg="yellow")
     label2.pack()
     label2.bind()
+
+
+def SpeechToText():     #function to implement speach to text conversion
+   # obtain audio from the microphone
+	r = sr.Recognizer()
+	with sr.Microphone() as source:
+	    print("Say something!")
+	    audio = r.listen(source)
+
+	# recognize speech using Sphinx
+	try:
+ 	  	print("Sphinx thinks you said " + r.recognize_sphinx(audio))
+	    	key = r.recognize_sphinx(audio)
+	        #entry = StringVar()
+	        #entry.set(str1)
+        	#showSearchResults()
+        	entry.delete(0, END)
+        	entry.insert(0,key)
+        	word=key
+        	text=pageRank(key)
+        	content_text.delete('1.0', END)
+        	content_text.insert('0.0',text)
+	except sr.UnknownValueError:
+    		print("Sphinx could not understand audio")
+	except sr.RequestError as e:
+		print("Sphinx error; {0}".format(e))
+
     
 Name="Search Engine"
 
@@ -123,7 +151,9 @@ frame1.pack()
 entry = completeEntry(frame1)
 entry.pack(side=LEFT)
 button = Button(frame1, text='Search', width=25, command=Show_Results, bg="#b9eaaf")
-button.pack()
+button.pack(side=LEFT)
+button = Button(frame1, text='Speak Now', width=10, command=SpeechToText)
+button.pack(side=LEFT)
 entry.focus()
 
 Text_Area = Text(root, wrap='word')
