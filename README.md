@@ -1,6 +1,6 @@
 # Search Engine Using Inverted Index
 
-This project has been written as the CS F369 Informaton Retrieval Assignment 1. The project implements a basic search engine in Python using Inverted Index to query from the Brown Corpus. We could theoretically expand the codebase to search through any similar database with relative ease.
+This project has been written as the CS F469 Informaton Retrieval Assignment 1. The project implements a basic search engine in Python using Inverted Index to query from the Brown Corpus. We could theoretically expand the codebase to search through any similar database with relative ease.
 
 ## Team
 
