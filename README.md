@@ -48,3 +48,63 @@ We have used Brown Corpus in our project. Here is a brief about it.
 > At the University of Freiburg, Germany, researchers are compiling new versions of the LOB and Brown corpora with texts from 1991. This will undoubtedly be a valuable resource for studies of language change in a near diachronic perspective.
 
 > The Brown corpus consists of 500 texts, each consisting of just over 2,000 words. The texts were sampled from 15 different text categories. The number of texts in each category varies (see below). 
+
+## Tokenizer Code Snippets
+
+The core Tokenizer code that parses and inserts each word in each file into the database. We stem each word using `nltk` before adding to the database. If a word already exists, we increment it's count for that particulat file. For this, we are using a 2d dictionary object to store the data.
+
+```python
+ for currentword in content.split():
+    ind = currentword.find('/')
+    if currentword.find(',')==-1 and currentword.find("'")==-1 and currentword.find('(')==-1:
+        currentword = currentword[:ind]
+        currentword=currentword.lower()           #Converting each word to small case
+        AfterNormalization.add(str(currentword))
+        currentword = stemmer.stem(currentword)   #Applying porter stemmer to each word
+        BeforeNormalization.add(str(currentword))
+        #print currentword
+        if dictionary[files].has_key(currentword):
+            k=dictionary[files][currentword]
+            dictionary[files][currentword]=k+1
+        else:
+            dictionary[files][currentword]=1
+```
+
+Code to construct an inverted index for each word after stemming:
+
+```python
+invertedIndex = {}      #to store inverted index for each term
+
+for term in BeforeNormalization:          #Constructing the inverted index
+    invertedIndex[term] = []
+    for file in fileNames:
+        if dictionary[file].has_key(term):
+            invertedIndex[term].append(file)
+```
+
+Code to calculate TF-IDF for the dataset:
+
+```python
+tf_idf = {}
+
+for files in fileNames:
+    fileName = 'brown/'+files
+    #print files
+    tf_idf[str(files)]={}
+    for key in dictionary[str(files)]:        #Finding the tf-idf value for each doc
+        tf_idf[files][key] = (1 + math.log(dictionary[files][key],10.0) ) * (math.log(n/(1.0 * len(invertedIndex[key]) ), 10.0))
+```
+
+The code to dump the generated dataset for use by the querying GUI:
+
+```python
+#Dumping all the data structures to be used while querying
+pickle.dump( AfterNormalization , open( "AfterNormalization.p", "wb" ) )     
+pickle.dump( dictionary , open( "Dictionary.p", "wb" ) )
+pickle.dump( tf_idf , open( "Tf_Idf.p", "wb" ) )
+pickle.dump( invertedIndex , open( "InvertedIndex.p", "wb" ) )
+```
+
+## Querying Code Snippets
+
+We wouldn't go into the glue code for the GUI to work, but would instead focus on the core search code here.
