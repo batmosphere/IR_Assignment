@@ -8,6 +8,7 @@ import webbrowser
 import Tkinter as tk
 from Tkinter import *
 import speech_recognition as sr
+import pyttsx
 
 
 lengths = {}
@@ -99,17 +100,22 @@ def Show_Results():    #function to show all the relevant documents inside the G
     word=key
     text=Page_Ranking_Algo(key)
     print text.split()
-    label2 = tk.Label(Text_Area, text=r"*************Results are as follows**************", fg="black", bg="yellow")
-    label2.pack()
-    label2.bind()
+    
+    engine = pyttsx.init()
+    rate = engine.getProperty('rate')
+    engine.setProperty('rate', rate-40)
+    engine.setProperty('voice', 'english+f3')
+    engine.say('The Top 10 results are as follows')
+    engine.runAndWait()
+
     for words in text.split():
         label1 = tk.Label(Text_Area, text=r"brown/"+words, fg="blue", cursor="hand2")
         label1.pack(fill=X)
         label1.bind("<Button-1>", GotoData)
-    label2 = tk.Label(Text_Area, text=r"*************End Of results**************", fg="black", bg="yellow")
+    label2 = tk.Label(Text_Area, text=r"***************************", fg="black", bg="yellow")
     label2.pack()
     label2.bind()
-
+    
 
 def SpeechToText():     #function to implement speach to text conversion
    # obtain audio from the microphone
