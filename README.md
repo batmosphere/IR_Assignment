@@ -4,7 +4,7 @@ This project has been written as the CS F469 Informaton Retrieval Assignment 1. 
 
 ## Team
 
-1. **Aayush Barthwal** - 2015A7PS0XXXH
+1. **Aayush Barthwal** - 2015A7PS0136H
 2. **Mukund Kothari** - 2015B4PS0546H
 3. **Rohitt Vashishtha** - 2015A7PS0XXXH
 4. **Tushar Aggarwal** - 2015A7PS0047H
