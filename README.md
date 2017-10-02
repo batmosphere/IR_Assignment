@@ -108,3 +108,59 @@ pickle.dump( invertedIndex , open( "InvertedIndex.p", "wb" ) )
 ## Querying Code Snippets
 
 We wouldn't go into the glue code for the GUI to work, but would instead focus on the core search code here.
+
+This is the function that calculates the top 10 search results and returns for rendering by the GUI. We first normalize the words and then query from the inverted index for their presence in the text. After that, we calculate the cosine similarity of the query vector with the docs and sort to return the top 10 results.
+
+```python
+def Page_Ranking_Algo(query):    #function to implement page ranking
+	Query_Dictionary = {}
+	Query_List = []
+
+	for word in query.split():  #Representing query as a vector
+		word=word.lower()
+		word = stemmer.stem(word)
+		if word in Query_Dictionary:
+			k=Query_Dictionary[word]
+			Query_Dictionary[word] = k+1
+		else:
+			Query_Dictionary[word] = 1
+
+	for key in Query_Dictionary:
+		Query_List.append(key)
+		print(key)
+
+	score = {}
+
+	# print len(dict)
+
+	for word in Query_List:     #Calculating the cosine similarity of the query vector with the docs
+		weight_q = 0
+		if word in invertedIndex:
+			df = len(invertedIndex[word])
+			idf = math.log( N/( df * 1.0 ), 10.0 )
+			weight_q = idf * ( 1.0 + math.log( Query_Dictionary[word] , 10.0))
+
+			for doc in invertedIndex[word]:
+				if doc in score:
+					temp = score[doc]
+					weight_d = tf_idf[doc][word]
+					score[doc] = temp + weight_q * weight_d
+				else:
+					weight_d = tf_idf[doc][word]
+					score[doc] = weight_q * weight_d
+
+	rank = []
+
+	for key in score:   #Length Normalization of the cosine similarity
+		score[key] = score[key]/(1.0 * lengths[key])
+		rank.append((key, score[key]))
+		#print key, score[key], lengths[key]
+
+	# sorted(ranking,key=itemgetter(1))
+	rank = sorted(rank , key=lambda x: x[1], reverse = True)  #sorting all the docs on the basis of their cosine similarity
+
+	print(rank[:10])
+	print("*************************************************************************************")
+	text = '\n'.join(chunk[0] for chunk in rank[:min(len(rank),10)])  #Returning the top 10 search results
+	return text
+```
