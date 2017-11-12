@@ -1,6 +1,6 @@
 # Implementing the PageRank Algorithm
 
-This project has been written as the CS F469 Informaton Retrieval Assignment 2. The project implements the PageRank algorithm to calculate the probabilties of visiting every page in the dataset.
+This project has been written as the CS F469 Informaton Retrieval Assignment 2. The project implements the PageRank algorithm to calculate the respective probabilty of every page in the dataset.
 
 ## Team
 
