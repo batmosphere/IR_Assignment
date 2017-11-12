@@ -18,4 +18,8 @@ This project has been written as the CS F469 Informaton Retrieval Assignment 2. 
 
 Run `python helper.py` to generate to start the algorithm. The file name for the corpus is mentioned here.
 
+GraphRank.txt contains the nodes and their respective Page rank
+
+GraphData.txt contains an edge list showing the nodes adn their respective connections.
+
 Run `python graph.py` to see the graphical output. 
