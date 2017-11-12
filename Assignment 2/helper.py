@@ -1,5 +1,8 @@
-import sys
 from pageRank1 import pageRank
+import pandas as pd 
+import csv
+import operator
+
 
 links = [[]]
 
@@ -8,9 +11,8 @@ def foo(s):
         return int(s)
     except ValueError:
         return s
-
+    
 file = open("GraphData.txt","w+")
-
 def read_file(filename):
     count=0
     f = open(filename, 'r')
@@ -26,15 +28,41 @@ def read_file(filename):
     f.close()
 
 read_file("web-NotreDame.txt")
+#
+#pr =  pageRank(links, alpha=0.85, convergence=0.00001, checkSteps=10)
+#sum = 0
+#f = open("GraphRank.txt","w+")
+#for i in range(len(pr)):
+#    if(i<50):
+#       f.write(`i`+"\t"+`pr[i]`+"\n")
+#    print i, "=", pr[i]
+#    sum = sum + pr[i]
+#print "sum = " + str(sum)
+#f.close()
+
 
 pr =  pageRank(links, alpha=0.85, convergence=0.00001, checkSteps=10)
 sum = 0
+f = open("GraphRankAll.txt","w+")
+for i in range(len(pr)):
+   f.write(`i`+"\t"+`pr[i]`+"\n")
+   print i, "=", pr[i]
+   sum = sum + pr[i]
+print "sum = " + str(sum)
+f.close()
+
+f = open("SortedGraphRank.txt","w+")
+sample = open("GraphRank.txt")
+csv1 = csv.reader(sample,delimiter="\t")
+sort = sorted(csv1,key=operator.itemgetter(1))
+for i in sort:
+    str1 = i[0] + " " + i[1]
+    f.write("%s\n" % str1)
+f.close()
+
 f = open("GraphRank.txt","w+")
 for i in range(len(pr)):
     if(i<50):
        f.write(`i`+"\t"+`pr[i]`+"\n")
-    print i, "=", pr[i]
-    sum = sum + pr[i]
-print "sum = " + str(sum)
 f.close()
-
+    

@@ -1,10 +1,3 @@
-# -*- coding: utf-8 -*-
-"""
-Created on Sun Nov 12 19:01:49 2017
-
-@author: Tushar Aggarwal
-"""
-
 import networkx as nx
 import matplotlib.pyplot as plt
 
@@ -21,9 +14,3 @@ print nx.info(g)
 nx.draw(g,nx.circular_layout(g),with_labels=True, node_color='y',node_size=900,alpha=0.8)
 
 plt.show()
-
-#pos = nx.spring_layout(g)
-#nx.draw(g, pos, with_labels=False)
-#nx.draw_networkx_labels(g,pos,label)
-#nx.draw(g,label, with_labels = True)
-#plt.show()
