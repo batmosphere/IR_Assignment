@@ -11,7 +11,6 @@ def foo(s):
 
 file = open("GraphData.txt","w+")
 
-
 def read_file(filename):
     count=0
     f = open(filename, 'r')
@@ -32,7 +31,8 @@ pr =  pageRank(links, alpha=0.85, convergence=0.00001, checkSteps=10)
 sum = 0
 f = open("GraphRank.txt","w+")
 for i in range(len(pr)):
-    f.write(`i`+"\t"+`pr[i]`+"\n")
+    if(i<50):
+       f.write(`i`+"\t"+`pr[i]`+"\n")
     print i, "=", pr[i]
     sum = sum + pr[i]
 print "sum = " + str(sum)
