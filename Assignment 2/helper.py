@@ -19,7 +19,7 @@ def read_file(filename):
     f = open(filename, 'r')
     for line in f:
         (frm, to) =  map(foo, line.split("\t"))
-        if(count<=50):
+        if(count<50):
             file.write(`frm`+"\t"+`to`+"\n")
             count+=1
         extend = max(frm - len(links), to - len(links)) + 1
