@@ -1,0 +1,75 @@
+{
+  "name": "tldr",
+  "version": "2.0.2",
+  "description": "Simplified and community-driven man pages",
+  "author": "Romain Prieto",
+  "license": "MIT",
+  "repository": "tldr-pages/tldr-node-client",
+  "keywords": [
+    "man",
+    "unix",
+    "linux",
+    "osx",
+    "commands",
+    "command-line",
+    "shell",
+    "bash",
+    "zsh"
+  ],
+  "homepage": "http://tldr-pages.github.io",
+  "engines": {
+    "node": ">=4.7"
+  },
+  "main": "bin/tldr",
+  "files": [
+    "bin",
+    "config.json",
+    "lib",
+    "LICENSE.md"
+  ],
+  "bin": {
+    "tldr": "./bin/tldr"
+  },
+  "preferGlobal": true,
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "precommit": "npm run lint && npm run test:quiet",
+    "prepush": "npm run test:quiet",
+    "start": "node ./bin/tldr",
+    "example": "node ./bin/tldr tar",
+    "test": "mocha test --require=env-test",
+    "test:quiet": "npm test --reporter=dot",
+    "lint": "eslint --global Promise lib test bin/tldr",
+    "watch": "mocha test --require=env-test --reporter=min --watch --growl",
+    "test:functional": "bash test/functional-test.sh",
+    "test:all": "npm run lint && npm test && npm run test:functional"
+  },
+  "dependencies": {
+    "chalk": "~1.1.1",
+    "commander": "~2.9.0",
+    "fs-extra": "^0.30.0",
+    "glob": "^7.1.2",
+    "lodash.defaults": "~4.2.0",
+    "lodash.get": "~4.4.2",
+    "lodash.identity": "~3.0.0",
+    "lodash.isempty": "~4.4.0",
+    "lodash.sample": "~4.2.1",
+    "lodash.unescape": "~4.0.0",
+    "marked": "~0.3.6",
+    "ms": "~0.7.1",
+    "natural": "^0.5.4",
+    "os-homedir": "~1.0.1",
+    "request": "~2.75.0",
+    "unzip2": "~0.2.5"
+  },
+  "devDependencies": {
+    "env-test": "^1.0.0",
+    "eslint": "^4.6.1",
+    "husky": "^0.14.3",
+    "mocha": "^3.5.0",
+    "should": "^13.0.1",
+    "sinon": "^3.2.1"
+  }
+}
