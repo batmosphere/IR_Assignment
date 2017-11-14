@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 """
-Created on Mon Nov 11 11:04:14 2017
+Created on Mon Nov 11 05:12:14 2017
 
-@author: mukund
+@author: aayush
 """
 
 
@@ -299,7 +299,7 @@ pickle.dump( invertedIndex , open( "InvertedIndex.p", "wb" ) )
 
 
 
-Alternative IR assignment 1
+******************Alternative IR assignment 1********************************
 
 
 
