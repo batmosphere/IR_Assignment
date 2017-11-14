@@ -141,7 +141,7 @@ def pearson(data1, data2):
 	rval['rank'] = rank
 	return rval
 
-def ponk_collab(mat, final, rank):
+def precisionAtRankK(mat, final, rank):
     count = 0.00
     match = 0.00
     for movie in rank:
@@ -154,7 +154,7 @@ def ponk_collab(mat, final, rank):
     precision = float((match*100))/count
     return precision
 
-def srcr_collab(mat, final):
+def spearman(mat, final):
     count = 0
     sumds = 0
     for movie in mat.keys():
