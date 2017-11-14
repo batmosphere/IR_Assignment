@@ -1,0 +1,460 @@
+<!doctype html>
+<html><head><title>Documentation</title><meta charset="UTF-8"><link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Crimson+Text:400,400italic,700,700italic|Roboto:400,700,700italic,400italic"><style>
+body {
+    font-size: 15px;
+    color: #333;
+    background: #fff;
+    padding: 60px 95px;
+    max-width: 900px;
+    margin: 0 auto;
+    text-rendering: optimizeLegibility;
+    font-feature-settings: "kern";
+    font-kerning: normal;
+    -moz-font-feature-settings: "kern";
+    -webkit-font-feature-settings: "kern";
+}
+
+/* Headings */
+h1, h2, h3, th {
+    font-family: Roboto, sans-serif;
+    font-weight: 700;
+    margin: 0;
+    margin-top: 1.25em;
+    margin-bottom: 0.75em;
+}
+
+h1 {
+    font-size: 35px;
+    line-height: 42px;
+}
+
+h1:first-child {
+    margin-top: 0;
+}
+
+h2 {
+    font-size: 18px;
+    line-height: 22px;
+}
+
+h3 {
+    text-transform: uppercase;
+    font-size: 13px;
+    line-height: 16px;
+}
+
+/* Body text */
+body, p, ul, ol, td {
+    font-family: 'Crimson Text', serif;
+    font-size: 16px;
+    line-height: 20px;
+}
+
+blockquote, q {
+    display: block;
+    margin: 1em 0;
+    font-style: italic;
+}
+
+blockquote a, q a {
+    text-decoration: underline;
+}
+
+blockquote {
+    padding-left: 10px;
+    border-left: 4px solid #a6a6a6;
+}
+
+q {
+    color: #a6a6a6;
+    line-height: 40px;
+    font-size: 24px;
+    text-align: center;
+    quotes: none;
+}
+
+q a {
+    color: #a6a6a6;
+}
+
+code, pre {
+    font-family: Consolas, "Liberation Mono", Menlo, "Courier Prime Web", Courier, monospace;
+    background: #f3f3f3;
+}
+
+code {
+    padding: 1px;
+    margin: 0 -1px;
+    border-radius: 3px;
+}
+
+pre {
+    display: block;
+    line-height: 20px;
+    text-shadow: 0 1px white;
+    padding: 5px 5px 5px 30px;
+    white-space: nowrap;
+    position: relative;
+    margin: 1em 0;
+}
+
+pre:before {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 15px;
+    border-left: solid 1px #dadada;
+}
+
+/* Lists */
+div[data-section-style="5"],
+div[data-section-style="6"],
+div[data-section-style="7"] {
+    margin: 12px 0;
+}
+
+ul {
+    padding: 0 0 0 40px;
+}
+
+ul li {
+    margin-bottom: 0.4em;
+}
+
+/* Bulleted list */
+div[data-section-style="5"] ul {
+    list-style-type: disc;
+}
+div[data-section-style="5"] ul ul {
+    list-style-type: circle;
+}
+div[data-section-style="5"] ul ul ul {
+    list-style-type: square;
+}
+div[data-section-style="5"] ul ul ul ul {
+    list-style-type: disc;
+}
+div[data-section-style="5"] ul ul ul ul ul {
+    list-style-type: circle;
+}
+div[data-section-style="5"] ul ul ul ul ul ul {
+    list-style-type: square;
+}
+
+/* Numbered list */
+div[data-section-style="6"] ul {
+    list-style-type: decimal;
+}
+div[data-section-style="6"] ul ul {
+    list-style-type: lower-alpha;
+}
+div[data-section-style="6"] ul ul ul {
+    list-style-type: lower-roman;
+}
+div[data-section-style="6"] ul ul ul ul {
+    list-style-type: decimal;
+}
+div[data-section-style="6"] ul ul ul ul ul {
+    list-style-type: lower-alpha;
+}
+div[data-section-style="6"] ul ul ul ul ul ul {
+    list-style-type: lower-roman;
+}
+
+/* Checklist */
+div[data-section-style="7"] ul {
+    list-style-type: none;
+}
+
+div[data-section-style="7"] ul li:before {
+    content: "\2610";
+    position: absolute;
+    display: inline;
+    margin-right: 1.2em;
+    margin-left: -1.2em;
+}
+
+div[data-section-style="7"] ul li.parent:before {
+    content: "";
+}
+
+div[data-section-style="7"] ul li.parent {
+    font-weight: bold;
+}
+
+div[data-section-style="7"] ul li.checked {
+    text-decoration: line-through;
+}
+
+div[data-section-style="7"] ul li.checked:before {
+    content: "\2611";
+    text-decoration: none;
+}
+
+/* Tables */
+div[data-section-style="8"] {
+    margin: 12px 0;
+}
+
+table {
+    border-spacing: 0;
+    border-collapse: separate;
+    border: solid 1px #7c7c7c;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, .25);
+    table-layout: fixed;
+    position: relative;
+}
+
+table th, table td {
+    padding: 2px 2px 0;
+    min-width: 1.5em;
+    word-wrap: break-word;
+}
+
+table th {
+    border-bottom: 1px solid #ccc;
+    background: #f0f0f0;
+    font-weight: bold;
+    vertical-align: bottom;
+    color: #3a4449;
+    text-align: center;
+}
+
+table td {
+    padding-top: 0;
+    border-left: 1px solid #e1e1e1;
+    border-top: 1px solid #e1e1e1;
+    vertical-align: top;
+}
+
+table td.bold {
+    font-weight: bold;
+}
+
+table td.italic {
+    font-style: italic;
+}
+
+table td.underline {
+    text-decoration: underline;
+}
+
+table td.strikethrough {
+    text-decoration: line-through;
+}
+
+table td.underline.strikethrough {
+    text-decoration: underline line-through;
+}
+
+table td:first-child {
+    border-left: hidden;
+}
+
+table tr:first-child td {
+    border-top: hidden;
+}
+
+/* Images */
+div[data-section-style="11"] {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+div[data-section-style="11"][data-section-float="0"] {
+    clear: both;
+    text-align: center;
+}
+
+div[data-section-style="11"][data-section-float="1"] {
+    float: left;
+    clear: left;
+    margin-right: 20px;
+}
+
+div[data-section-style="11"][data-section-float="2"] {
+    float: right;
+    clear: right;
+    margin-left: 20px;
+}
+
+div[data-section-style="11"] img {
+    display: block;
+    max-width: 100%;
+    height: auto;
+    margin: auto;
+}
+
+hr {
+    width: 70px;
+    margin: 20px auto;
+}
+</style></head><body><h1>Documentation</h1>
+
+<h3>requirements:</h3>
+
+We will look into the code in a step by step manner, focusing on the different library functions used in the making of this software. Here, it is important to note that there are certain requirements which are needed in order to run the programs:<br/>
+
+<br/>
+
+<div data-section-style='6'><ul><li class='' value='1'>The Python 3 IDE
+
+<br/></li><li class=''>The MovieLens Dataset, specifically the ml-small.zip file that provides the dataset. This is provided by the GroupLens research association. It provides information of about 100000 ratings provided by 700 users for 9000 movies.
+
+<br/></li><li class=''>Various packages for python- the numpy, scipy, time and os packages.
+
+<br/></li></ul></div>Note → This software will run on any operating system, be it UNIX based like Linux or Windows/Mac, so long as you have the required packages.<br/>
+
+<br/>
+
+<h2>The Code:</h2>
+
+<h2>Files, Modules and Variables</h2>
+
+This software consists of three files, namely the main.py, the svd.py and cur.py files, each of which is used to implement SVD and CUR respectively. The main.py consists of the variables and data that is used to compare the results from SVD and CUR. The svd.py and cur.py files are used to implement SVD and CUR respectively. We will go through each of the files, and explain their implementations separately.<br/>
+
+<br/>
+
+<h3>main.py:</h3>
+
+In this file, written in python 3, we have the implementation of the main function to execute the taking of input of the number of dimensions from the user for SVD and the number of rows and columns for CUR.  We import the svd, and cur files, as well as the os and time packages into the main function. <br/>
+
+<br/>
+
+Here we use the file manipulation functions like open( ), read( ) and write( ), to access the other files and print out the output.<br/>
+
+Also, we use the pympler package for getting information on the memory usage of the program.<br/>
+
+<br/>
+
+We get the output from the main function as the space, time taken and the error in the SVD and CUR implementations as a report. This is then sent out to the report.txt file which generated.<br/>
+
+<br/>
+
+<h3>helper.py</h3>
+
+<br>
+
+This file contains some basic helper functions to calculate the commonly needed values in the project, like:
+
+<ol>
+    <li><pre>getData(filename)</pre> - To load the dataset into the memory.</li> 
+    <li><pre>getUserData(userid, data)</pre> - To get the data of a specific user from the dataset.</li> 
+    <li><pre>rmserror(data1,data2)</pre> - To calculate the RMS Error for two sets of data.</li> 
+    <li><pre>precisionatk(predicted, data)</pre> - To calculate precision to check validity of the predicted ratings vs the actual data.</li> 
+    <li><pre>spearmanrank(data1,data2)</pre> - To calclate the spearman rank of two arrays of values, data1 and data2. Returns count and rank of the data.</li> 
+    <li><pre>pearson(data1,data2)</pre> - Calculates the Pearson correlation coefficient for two given data arrays.</li> 
+</ol>
+
+These functions have been used by the other files like <pre>collaborative.py</pre> so that the actual logic can be precisely and concisely expressed for readability.<br>
+
+<h3>collaborative.py</h3>
+
+This file consists of the logic used to implement collaborative filtering in Python. Here, we use some helper functions and implement the core logic with the following code:
+
+<pre>
+    # /usr/bin/env python3
+
+# Implement the collaborative recommendation
+
+import helper
+
+def filter(userdata, data):<br>&nbsp;&nbsp;&nbsp;&nbsp;similarity = []<br>&nbsp;&nbsp;&nbsp;&nbsp;for i in range(600):<br>        elem = helper.getUserData(i+1, data)<br>        rankdata = helper.pearson(userdata, elem)<br>        rankdata['user'] = i+1<br>        similarity.append(rankdata)<br>&nbsp;&nbsp;&nbsp;&nbsp;def sort(elem):<br>        return elem['rank']<br>&nbsp;&nbsp;&nbsp;&nbsp;list.sort(similarity, key=sort, reverse=True)<br>    # for each in similarity:<br>        # print(each)<br>&nbsp;&nbsp;&nbsp;&nbsp;bymovie = []<br>&nbsp;&nbsp;&nbsp;&nbsp;for row in data:<br>        num = 0<br>        den = 0<br>        flag = True<br>        index = None<br>        for eachvalue in userdata:<br>            if eachvalue['movie'] == row['movie']:<br>                flag = False<br>        if flag:<br>            for i in range(len(bymovie)):<br>                if bymovie[i]['movie'] == row['movie']:<br>                    num = bymovie[i]['num']<br>                    den = bymovie[i]['den']<br>                    index = i<br>                    # print("Found")<br>            # print(len(similarity))<br>            for eachsim in similarity:<br>                rating = row['rating']<br>                # print(rating)<br>                similarityval = eachsim['rank']<br>                num = num + similarityval * rating;<br>                den = den + similarityval;<br>                if index:<br>                    bymovie[index]['num'] = num<br>                    bymovie[index]['den'] = den<br>                    # print("Updating")<br>                else:<br>                    newval = {}<br>                    newval['movie'] = row['movie']<br>                    newval['num'] = num<br>                    newval['den'] = den<br>                    bymovie.append(newval)<br>                    # print("Appending")<br>                    # print(len(bymovie))<br>&nbsp;&nbsp;&nbsp;&nbsp;for i in range(len(bymovie)):<br>        bymovie[i]['rating'] = bymovie[i]['num']/bymovie[i]['den']<br>&nbsp;&nbsp;&nbsp;&nbsp;return bymovie
+</pre>
+
+<h3>svd.py</h3>
+
+<br/>
+
+This file consists of the logic used to implement collaborative filtering in Python. Here, we use some helper functions <br/>
+
+<br/>
+
+<br/></li></ul></div><b>Methods/Functions</b>:<br/>
+
+<br/>
+
+We use a variety of functions to implement the SVD decomposition:<br/>
+
+<div data-section-style='5'><ul><li class='' value='1'>At the starting of the program, we use the time.clock( ) function to get the start time of the operation. At the end of the operation, we use the function again to find the end time and thus give us the time of execution.
+
+<br/></li><li class=''>We use file functions like f.open and f.close as well as next( ) for going through the dataset.
+
+<br/></li><li class=''>We also declare and define the svd( ) function, which will be explained in detail.
+
+<br/></li></ul></div><b>SVD Function:</b><br/>
+
+<pre>def svd(M, k=r)</pre>
+
+We define a function called “svd”, which performs the operations for decomposition of a single matrix M into three separate matrices- U, S and Vt. We use the transpose( ) method to find the transpose of the matrix and define two more matrices, namely MMT and MTM.  We then calculate the Eigen vectors for the matrix MMT and MTM and form the U and Vt matrices. Using the Eigen values, we generate the S matrix.<br/>
+
+<pre>frobenius_svd=LA.norm(abs(M2)-M)</pre>
+
+The above line of code is used to calculate the error in SVD (it is taken from the numpy package)_<br/>
+
+<br/>
+
+<hr/><h3>CUR.PY:</h3>
+
+As we will see, a majority of the content of the file is very similar to that of the “svd.py “ file.  Even so, we will take a look at the contents and understand what is happening behind the scenes.<br/>
+
+<br/>
+
+<b>Importing Files and Packages:</b><br/>
+
+<br/>
+
+There are a number of modules that we implement in CUR and as such,we are going to use the following:<br/>
+
+<br/>
+
+→ The main_import* package so that any data from main is taken into cur.py<br/>
+
+→ linalg module from scipy<br/>
+
+→ matrix_rank module from numpy.linalg<br/>
+
+→ inv module from numpy package<br/>
+
+<br/>
+
+<b>Note:</b> We also import the time, and os packages for getting the time of execution, and other details from the runtime execution<br/>
+
+<br/>
+
+We use a lot of variables that are very similar to those present in the svd.py file and as such, we will look into the part of the code that makes a difference:<br/>
+
+<pre>f = LA.norm(M)**2<br>colProbDist = [(LA.norm(M[:,x])**2)/f for x in range(n)]<br>rowProbDist = [(LA.norm(M[x])**2)/f for x in range(m)]<br>rand_cols = np.random.choice(range(n),r,False,colProbDist)<br>rand_rows = np.random.choice(range(m),r,False,rowProbDist)<br><br>C = np.matrix(np.zeros((m, r)))<br>R = np.matrix(np.zeros((r, n)))<br>W = np.matrix(np.zeros((r, r)))<br>for i in range(r):<br>    C[:,i] = M[:,rand_cols[i]]/math.sqrt(r*colProbDist[rand_cols[i]])<br>    R[i] = M[rand_rows[i]]/math.sqrt(r*rowProbDist[rand_rows[i]])<br><br>for i in range(r):<br>    for j in range(r):<br>        W[i,j] = M[rand_rows[i],rand_cols[j]]<br><br># print C,R<br>X, Sig, Yt = LA.svd(W, full_matrices=False)<br>Sig = np.around(Sig, decimals=4)<br>i = 0<br>for x in Sig:<br>    if x != 0:<br>        Sig[i] = 1/x<br>    else:<br>        Sig[i] = 0<br>    i += 1<br>Sig = np.matrix(np.diag(Sig))<br><br>U = Yt.transpose()*Sig*Sig*X.transpose()<br>CUR = C*U*R;</pre>
+
+Here, in the above code, we are getting the values for the C and R matrices by using random probability distributions on the matrix.  We select some random columns and rows and normalize them into C and R using the column and row probability distributions.<br/>
+
+<br/>
+
+W is formed by the intersection of the randomly selected rows and columns. Now, we take the SVD decomposition of this W matrix in order to obtain Sig[ ] matrix. We then find the pseudo-inverse matrix U of Sig[ ].  From this, we can obtain the initial matrix by multiplying the three matrices C, U and R.<br/>
+
+<br/>
+
+<hr/><h2>Running the Programs:</h2>
+
+To  run the programs and execute them, you will need to do the following:<br/>
+
+<br/>
+
+ → You will have to open up the folder /directory containing the files in Terminal or Command Prompt.<br/>
+
+ → Next, you will have to run the main.py file using the command below:<br/>
+
+<pre>python main.py </pre>
+
+It will execute and will take user input accordingly, and then generate the output “report.txt” file. Note that there is an option to dump the matrices to JSON.<br/>
+
+<br/>
+
+<hr/><h2>Conclusion:</h2>
+
+While Collaborative Filtering, SVD and CUR are all closely related methods of recommendation problems, we can say that each is unique in its own perspective, and that there are certain advantages that each one possesses over the other. By using this software, one can come to an understanding of the comparison of Collab Filtering, SVD and CUR in terms of time, space and memory.<br/>
+
+</body></html>
