@@ -365,7 +365,7 @@ print "%s seconds" %(stop-start)
 
 ### Top k precision ###
 ponker = helper.precisionAtRankK(test, complete, rank)
-print "\nThe precision on top " + ponker['k'] +" is: "
+print "\nThe precision on top " + k +" is: "
 print ponker
 
 ### Spearman coefficient ###
